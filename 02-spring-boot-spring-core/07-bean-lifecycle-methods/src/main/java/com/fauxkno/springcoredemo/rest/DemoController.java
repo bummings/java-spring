@@ -22,11 +22,9 @@ public class DemoController {
     // using setter injection
     @Autowired
     public DemoController(
-            @Qualifier("baseballCoach") Coach theCoach,
-            @Qualifier("baseballCoach") Coach theSecondCoach) {
+            @Qualifier("baseballCoach") Coach theCoach) {
         System.out.println("Comin to ya from: " + getClass().getSimpleName());
         myCoach = theCoach;
-        mySecondCoach = theSecondCoach;
     }
 
     @GetMapping("/dailyworkout")
@@ -34,9 +32,4 @@ public class DemoController {
         return myCoach.getDailyWorkout();
     }
 
-    // determine with boolean if the coaches are following singleton pattern
-    @GetMapping ("/check")
-    public String check() {
-        return "Comparing beans: myCoach == secondCoach: " + (myCoach == mySecondCoach);
-    }
 }
