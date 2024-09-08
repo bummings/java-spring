@@ -26,10 +26,16 @@
     <br><br>
 
     Fav language:
-    <input type="radio" th:field="*{favoriteLanguage}" th:value="Java">Java </input>
-    <input type="radio" th:field="*{favoriteLanguage}" th:value="Go">Go </input>
-    <input type="radio" th:field="*{favoriteLanguage}" th:value="Python">Python </input>
-    <input type="radio" th:field="*{favoriteLanguage}" th:value="C++">C++ </input>
+    <input type="radio" th:field="*{favoriteLanguage}"
+                        th:each="tempLang : ${languages}"
+                        th:value="${tempLang}"
+                        th:text="${tempLang}" />
+
+<!--    <input type="radio" th:field="*{favoriteLanguage}" th:value="Java">Java </input>-->
+<!--    <input type="radio" th:field="*{favoriteLanguage}" th:value="Go">Go </input>-->
+<!--    <input type="radio" th:field="*{favoriteLanguage}" th:value="Python">Python </input>-->
+
+
 
     <input type="submit" value="Submit" />
 

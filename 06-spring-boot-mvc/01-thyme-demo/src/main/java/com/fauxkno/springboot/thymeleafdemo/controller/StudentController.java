@@ -17,6 +17,9 @@ public class StudentController {
     @Value("${countries}")
     private List<String> countries;
 
+    @Value("${languages}")
+    private List<String> languages;
+
     @GetMapping("/showStudentForm")
     public String showForm(Model theModel) {
         // create a student object
@@ -25,8 +28,11 @@ public class StudentController {
         // add created student as attribute into the model
         theModel.addAttribute("student", theStudent);
 
-        // add the list of countries to the model
+        // add the list of countries to the model (from application.properties)
         theModel.addAttribute("countries", countries);
+
+        // add the list of languages to the model (from application.properties)
+        theModel.addAttribute("languages", languages);
 
         return "student-form";
     }
