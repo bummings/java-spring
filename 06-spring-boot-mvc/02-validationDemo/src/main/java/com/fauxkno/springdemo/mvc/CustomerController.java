@@ -1,0 +1,15 @@
+package com.fauxkno.springdemo.mvc;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+
+@Controller
+public class CustomerController {
+    @GetMapping("/")
+    public String showFOrm(Model theModel) {
+        theModel.addAttribute("customer", new Customer());
+        return "customer-form";
+    }
+
+}
