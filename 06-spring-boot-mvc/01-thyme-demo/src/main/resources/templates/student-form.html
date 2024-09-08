@@ -38,10 +38,14 @@
     <br><br>
 
     Fav OS(s):
-    <input type="checkbox" th:field="*{favoriteSystems}" th:value="Linux">Linux</input>
-    <input type="checkbox" th:field="*{favoriteSystems}" th:value="MacOS">MacOS</input>
-    // encase in double and single quotes for words with space, e.g. Microsoft _____ Windows
-    <input type="checkbox" th:field="*{favoriteSystems}" th:value="'Microsoft Windows'">Microsoft Windows</input>
+    <input type="checkbox" th:field="*{favoriteSystems}"
+                           th:each="tempSystem : ${systems}"
+                           th:value="${tempSystem}"
+                           th:text="${tempSystem}" />
+<!--    <input type="checkbox" th:field="*{favoriteSystems}" th:value="Linux">Linux</input>-->
+<!--    <input type="checkbox" th:field="*{favoriteSystems}" th:value="MacOS">MacOS</input>-->
+<!--    &lt;!&ndash;    // encase in double and single quotes for words with space, e.g. Microsoft _____ Windows&ndash;&gt;-->
+<!--    <input type="checkbox" th:field="*{favoriteSystems}" th:value="'Microsoft Windows'">Microsoft Windows</input>-->
 
     <input type="submit" value="Submit" />
 

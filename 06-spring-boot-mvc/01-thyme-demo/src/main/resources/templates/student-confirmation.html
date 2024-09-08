@@ -6,15 +6,23 @@
 </head>
 <body>
 
-<h1>Student confirmation</h1>
+    <h1>Student confirmation</h1>
 
-The student is confirmed:
-<br>
-<span th:text="${student.firstName} + ' ' + ${student.lastName}"></span>
-<br>
-Hailing from <span th:text="${student.country}"></span>
-<h2>With a specialty in <span th:text="${student.favoriteLanguage}"></span></h2>
+    The student is confirmed:
+    <br>
 
+    <span th:text="${student.firstName} + ' ' + ${student.lastName}"></span>
+
+    <br>
+
+    Hailing from <span th:text="${student.country}"></span>
+    <h2>With a specialty in <span th:text="${student.favoriteLanguage}"></span></h2>
+
+    <br><br>
+
+    <ul>
+        <li th:each="tempSystem : ${student.favoriteSystems}" th:text="${tempSystem}"></li>
+    </ul>
 
 </body>
 </html>
