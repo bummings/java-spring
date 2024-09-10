@@ -1,10 +1,13 @@
 package com.fauxkno.springdemo.mvc;
 
+import com.fauxkno.springdemo.mvc.validation.CourseCode;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
+
 
 public class Customer {
 
@@ -23,7 +26,8 @@ public class Customer {
     @Pattern(regexp = "^[a-zA-Z0-9]{5}", message = "Only 5 digits plz")
     private String postalCode;
 
-
+    @CourseCode
+    private String courseCode;
 
 
     public String getFirstName() {
@@ -57,5 +61,13 @@ public class Customer {
 
     public void setPostalCode(String postalCode) {
         this.postalCode = postalCode;
+    }
+
+    public String getCourseCode() {
+        return courseCode;
+    }
+
+    public void setCourseCode(String courseCode) {
+        this.courseCode = courseCode;
     }
 }

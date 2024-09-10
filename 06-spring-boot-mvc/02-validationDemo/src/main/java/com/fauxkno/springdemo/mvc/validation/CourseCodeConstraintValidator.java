@@ -1,10 +1,9 @@
 package com.fauxkno.springdemo.mvc.validation;
 
-import jakarta.validation.Constraint;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 
-public class CourseCodeConstraint implements ConstraintValidator<CourseCode, String> {
+public class CourseCodeConstraintValidator implements ConstraintValidator<CourseCode, String> {
 
     private String coursePrefix;
 
@@ -16,8 +15,14 @@ public class CourseCodeConstraint implements ConstraintValidator<CourseCode, Str
     @Override
     public boolean isValid(String theCode, ConstraintValidatorContext theConstraintValidatorContext) {
 
-        boolean result = theCode.startsWith(coursePrefix); // does it start with "faux"?
+        boolean result;
 
-        return false;
+        if (theCode != null) {
+            result = theCode.startsWith(coursePrefix); // does it start with "faux"?
+        }
+        else {
+            return true;
+        }
+        return result;
     }
 }
