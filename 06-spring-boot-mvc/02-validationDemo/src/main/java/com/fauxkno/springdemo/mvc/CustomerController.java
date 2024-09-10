@@ -1,15 +1,30 @@
 package com.fauxkno.springdemo.mvc;
 
 import jakarta.validation.Valid;
+import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class CustomerController {
+
+    // add an initbinder to trim input of whitespace
+    // removing leading and trailing whitespace
+    // resolve issue for validation
+    @InitBinder
+    public void initBinder(WebDataBinder dataBinder) {
+        StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);
+
+        dataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
+    }
+
+
     @GetMapping("/")
     public String showFOrm(Model theModel) {
         theModel.addAttribute("customer", new Customer());
@@ -20,6 +35,10 @@ public class CustomerController {
     // these validation rules have already been setup in the Customer class
     public String processForm(@Valid @ModelAttribute("customer") Customer theCustomer,
                               BindingResult theBindingResult) {
+
+        //debug
+        System.out.println("Last name: |" + theCustomer.getLastName() + "|");
+
         if (theBindingResult.hasErrors()) {
             return "customer-form";
         } else {
