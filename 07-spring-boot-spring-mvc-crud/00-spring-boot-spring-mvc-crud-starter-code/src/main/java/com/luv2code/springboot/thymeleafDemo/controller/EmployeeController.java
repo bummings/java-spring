@@ -49,7 +49,9 @@ public class EmployeeController {
     public String saveEmployee(@ModelAttribute("employee") Employee theEmployee) {
 
         // save the employee
+        employeeService.save(theEmployee);
 
         // use a redirect to prevent duplicate submissions
+        return "redirect:/employees/list";
     }
 }
